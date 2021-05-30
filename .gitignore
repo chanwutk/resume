@@ -1,0 +1,12 @@
+.DS_Store
+
+# LaTeX temporary files
+
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Compiled files
+build/
+resume.pdf
