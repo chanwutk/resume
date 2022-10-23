@@ -152,8 +152,8 @@
 \setbool{acvSectionColorHighlight}{false}
 
 % Awesome section color
-\def\@sectioncolor#1#2#3{%
-  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1#2#3}}{#1#2#3}%
+\def\@sectioncolor#1{%
+  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1}}{#1}%
 }
 
 
@@ -188,20 +188,20 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{graytext} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{30pt}{1em}\headerfontlight\color{graytext} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{30pt}{1em}\headerfont\bfseries\color{text} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor {#1}}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
@@ -224,7 +224,7 @@
 \newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
 
 % For elements of the cover letter
-\newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor {#1}}}
 \newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
@@ -566,6 +566,7 @@
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{%
   \vspace{\acvSectionTopSkip}
+  \vspace{-2mm}
   \sectionstyle{#1}
   \phantomsection
   \color{gray}\vhrulefill{0.9pt}
@@ -590,6 +591,9 @@
   \vspace{2mm}
 }
 
+\newcommand*{\link}[2]{\textbf{#1: } \href{#2}{#2}}
+\newcommand*{\important}[1]{{\fontsize{12pt}{1em}\bodyfontlight\slshape\color{awesome} \textasteriskcentered  \hspace{-0.5mm}  \fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+
 % Define an environment for cvepub
 \newenvironment{cvpubs}{%
   \vspace{\acvSectionContentTopSkip}
@@ -598,20 +602,29 @@
   \end{center}
 }
 % Define an entry of cv information
-% Usage: \cventry{<name>}{<location>}{<paper>}{<date>}{<conference>}{<description>}
-\newcommand*{\cvpub}[6]{%
+% Usage: \cventry{<paper-name>}{<authors-conference>}{<date>}{<location>}
+\newcommand*{\cvpub}[4]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \entrytitlestyle{#1} & \entrylocationstyle{#2} \\
-    \entrypositionstyle{#4} & \entrydatestyle{#3} \\
-    \entrypositionstyle{#5} \\
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+    \entrytitlestyle{#1} \hspace{-0.5mm} \ifempty{#4}{}{\important{#4}} & \entrydatestyle{#3} \\
+    \entrydatestyle{#2}\\
+  \end{tabular*}%
+}
+\newcommand*{\entrydescriptionnstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\slshape\color{graytext} #1}}
+% Define an entry of cv information
+% Usage: \cventry{<paper-name>}{<authors-conference>}{<date>}{<location>}
+\newcommand*{\cvteach}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+    \entrytitlestyle{#1} \hspace{-0.5mm} \ifempty{#4}{}{--- \entrydatestyle{#4}} & \entrydatestyle{#3} \\
+    \entrydescriptionnstyle{#2}\\
   \end{tabular*}%
 }
 
-\newcommand*{\link}[2]{\textbf{#1: } \href{#2}{#2}}
 
 % Define an environment for cventry
 \newenvironment{cventries}{%
@@ -626,11 +639,49 @@
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  \begin{tabular*}{\textwidth}{
+    @{\extracolsep{\fill}}
+    L{\textwidth - 4.5cm}
+    R{4.5cm}
+  }
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+}
+
+\newcommand*{\cventrycol}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{0.48\textwidth}{
+    @{\extracolsep{\fill}}
+    L{0.48\textwidth - 2.5cm}
+    R{2.5cm}
+  }
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{0.48\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+}
+
+% Define an entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\newcommand*{\cvwork}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{
+    @{\extracolsep{\fill}}
+    l r
+    % L{\textwidth - 4.5cm}
+    % R{4.5cm}
+  }
+    \entrytitlestyle{#2} \hspace{-0.9mm} \entrypositionstyle{--- #1} & \entrydatestyle{#4}\\
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }

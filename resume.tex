@@ -24,7 +24,7 @@
 \usepackage{multicol}
 
 % Configure page margins with geometry
-\geometry{left=1.2cm, top=.8cm, right=1.2cm, bottom=1.0cm, footskip=.5cm}
+\geometry{left=1cm, top=.8cm, right=1cm, bottom=1.0cm, footskip=.5cm}
 
 % Specify the location of the included fonts
 \fontdir[fonts/]
@@ -32,9 +32,9 @@
 % Color for highlights
 % Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
 %                 awesome-nephritis, awesome-concrete, awesome-darknight
-% \colorlet{awesome}{awesome-nephritis}
+\colorlet{awesome}{awesome-emerald}
 % Uncomment if you would like to specify your own color
-\definecolor{awesome}{HTML}{008b8b}
+% \definecolor{awesome}{HTML}{008b8b}
 
 % Colors for text
 % Uncomment if you would like to specify your own color
@@ -74,7 +74,7 @@
 % \googlescholar{Q9OsSU8AAAAJ}{name-to-display}
 %% \firstname and \lastname will be used
 \googlescholar{Q9OsSU8AAAAJ}{}
-\extrainfo{Berkeley, CA}
+\extrainfo{\href{https://www.google.com/maps/place/Berkeley,+CA}{Berkeley, CA}}
 
 % \quote{``Be the change that you want to see in the world."}
 
@@ -88,10 +88,10 @@
 
 % Print the footer with 3 arguments(<left>, <center>, <right>)
 % Leave any of these blank if they are not needed
-% \makecvfooter
-%   {\today}
-%   {Chanwut Kittivorawong~~~·~~~Résumé}
-%   {\thepage}
+\makecvfooter
+  {}
+  {\today}
+  {\thepage}
 
 
 %-------------------------------------------------------------------------------
@@ -100,10 +100,13 @@
 %-------------------------------------------------------------------------------
 % \input{content/summary.tex}
 \input{content/education.tex}
-\input{content/publication.tex}
 \input{content/experience.tex}
-\input{content/projects.tex}
+\input{content/publications.tex}
+\clearpage
+\input{content/talks.tex}
+\input{content/teachings.tex}
 \input{content/skills.tex}
+% \input{content/projects.tex}
 \input{content/courses.tex}
 \input{content/honors.tex}
 \input{content/extracurricular.tex}
