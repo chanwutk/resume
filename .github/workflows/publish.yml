@@ -27,7 +27,7 @@ jobs:
         cp ./resume.pdf ./build/
 
     - name: Publish Website
-      uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        repo-token: ${{ secrets.GH_PAT }}
-        site-directory: 'build'
+        folder: 'build'
+        single-commit: true
