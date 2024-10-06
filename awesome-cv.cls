@@ -399,7 +399,7 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{3mm}
+\newcommand{\acvSectionTopSkip}{2mm}
 \newcommand{\acvSectionContentTopSkip}{2.5mm}
 
 
@@ -608,7 +608,7 @@
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
-    \entrytitlestyle{#1} \hspace{-0.5mm} \ifempty{#4}{}{\important{#4}} & \entrydatestyle{#3} \\
+    \entrytitlestyle{#1} \hspace{-0.5mm}\vspace{-0.8mm} \ifempty{#4}{}{\important{#4}} & \entrydatestyle{#3} \\
     \entrydatestyle{#2}\\
   \end{tabular*}%
 }
