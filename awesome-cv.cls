@@ -562,11 +562,20 @@
   \fancyfoot[R]{\footerstyle{#3}}
 }
 
+% Define a summary section for CV
+% Usage: \cvsummarysection
+\newcommand{\cvsummarysection}{%
+  \vspace{\acvSectionTopSkip}
+  \vspace{-1mm}
+  \phantomsection
+}
+
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{%
   \vspace{\acvSectionTopSkip}
-  \vspace{-3mm}
+  \vspace{-2mm}
+  % \vspace{-3mm}
   \sectionstyle{#1}
   \phantomsection
   \color{gray}\vhrulefill{0.9pt}
