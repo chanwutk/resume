@@ -574,11 +574,12 @@
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{%
   \vspace{\acvSectionTopSkip}
-  \vspace{-2mm}
-  % \vspace{-3mm}
+  % \vspace{-2mm}
+  \vspace{-3mm}
   \sectionstyle{#1}
   \phantomsection
   \color{gray}\vhrulefill{0.9pt}
+  \vspace{-1mm}
 }
 
 % Define a subsection for CV
